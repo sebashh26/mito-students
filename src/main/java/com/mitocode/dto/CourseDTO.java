@@ -18,11 +18,11 @@ public class CourseDTO {
 	
 	private Integer idCourse;
 	
-	@NotBlank
+	@NotNull
 	@Size(min = 3, max = 50)
 	private String nameCourse;
 	
-	@NotBlank
+	@NotNull
 	@Size(min = 1, max = 5)
 	private String acronymCourse;
 	
