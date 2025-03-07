@@ -66,6 +66,13 @@ public class StudentController {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 	
+	//order by age 
+	@GetMapping("/studentmajor")
+	public ResponseEntity<List<StudentDTO>> readAllOrderByAge(){
+		List<StudentDTO> list = service.findAllOrderByAge().stream().map(this::convertToDto).toList();
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
 	private StudentDTO convertToDto(Student student) {
 		return mapper.map(student, StudentDTO.class);
 	}

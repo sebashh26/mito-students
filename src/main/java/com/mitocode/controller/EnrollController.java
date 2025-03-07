@@ -1,6 +1,8 @@
 package com.mitocode.controller;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -63,6 +65,12 @@ public class EnrollController {
 	public ResponseEntity<Void> deleteById(@PathVariable("id") Integer id) throws Exception {
 		service.delete(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	
+	@GetMapping("/studentsbycourse")
+	public ResponseEntity<Map<String, Set<String>>> getStudentsByCourse(){
+		Map<String, Set<String>> map = service.getStudentGroupByCourse();
+		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 
 	private EnrollDTO convertToDto(Enroll sale) {
