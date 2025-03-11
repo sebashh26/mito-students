@@ -3,7 +3,6 @@ package com.mitocode.service.impl;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,7 +29,7 @@ public class EnrollServiceImpl extends CRUDImpl<Enroll, Integer> implements IEnr
 
 	
 	@Override
-	public Map<String, Set<String>> getStudentGroupByCourse() {
+	public Map<String, List<String>> getStudentGroupByCourse() {
 		
 		Stream<Enroll> streamEnroll = repo.findAll().stream();
 		//Map<String, List<Team>> mapTeams =  teams.stream().collect(Collectors.groupingBy(Team::getSex));
@@ -73,10 +72,10 @@ public class EnrollServiceImpl extends CRUDImpl<Enroll, Integer> implements IEnr
 //			System.out.println(enrollDetail.getEnroll().getStudent());
 //			
 //		}
-		Map<String, Set<String>> studentsBycourse = streamEnrollDetail
+		Map<String, List<String>> studentsBycourse = streamEnrollDetail
 				.collect(Collectors.groupingBy(e -> e.getCourse().getNameCourse(), 
 						Collectors.mapping(p-> p.getEnroll().getStudent().getNameCompleteStudent() +" "+ p.getEnroll().getStudent().getLastNameStudent() 
-							, Collectors.toSet())));
+							, Collectors.toList())));
 		//System.out.println(bycourse);
 	
 	

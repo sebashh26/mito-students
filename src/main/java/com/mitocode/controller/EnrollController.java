@@ -2,7 +2,6 @@ package com.mitocode.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -68,8 +67,8 @@ public class EnrollController {
 	}
 	
 	@GetMapping("/studentsbycourse")
-	public ResponseEntity<Map<String, Set<String>>> getStudentsByCourse(){
-		Map<String, Set<String>> map = service.getStudentGroupByCourse();
+	public ResponseEntity<Map<String, List<String>>> getStudentsByCourse(){
+		Map<String, List<String>> map = service.getStudentGroupByCourse();
 		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 
