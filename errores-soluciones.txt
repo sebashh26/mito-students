@@ -1,0 +1,11 @@
+********************Dockerizando proyecto java *****************************
+
+errores y solucciones:
+
+-error
+Parameter 1 of constructor in com.mitocode.controller.CourseController required a single bean, but 2 were found:
+        - studentMapper: defined by method 'studentMapper' in class path resource [com/mitocode/config/MapperConfig.class]
+        - defaultMapper: defined by method 'defaultMapper' in class path resource [com/mitocode/config/MapperConfig.class]
+		
+-solucion
+COPY ./lombok.config ./  agregar en el docker file

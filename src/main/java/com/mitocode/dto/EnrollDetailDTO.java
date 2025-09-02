@@ -1,6 +1,9 @@
 package com.mitocode.dto;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -27,5 +30,7 @@ public class EnrollDetailDTO {
 	@Size(min = 1, max = 3)
 	private String classRoom;
 	
-	
+	@NotNull
+	@JsonManagedReference
+	private List<NotesDTO> notes;
 }

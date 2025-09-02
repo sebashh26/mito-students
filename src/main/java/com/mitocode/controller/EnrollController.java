@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mitocode.dto.EnrollDTO;
 import com.mitocode.model.Enroll;
+import com.mitocode.model.EnrollDetail;
 import com.mitocode.service.IEnrollService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/enrolls")
+@RequestMapping("v1/enrolls")
 @RequiredArgsConstructor
 public class EnrollController {
 
@@ -72,6 +73,13 @@ public class EnrollController {
 		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 
+	
+	@GetMapping("/studentnotes")
+	public ResponseEntity<Map<Enroll, List<EnrollDetail>>> getStudentsNotes(){
+		Map<Enroll, List<EnrollDetail>> map = service.getStudentNotes();
+		return new ResponseEntity<>(map, HttpStatus.OK);
+		
+	}
 	private EnrollDTO convertToDto(Enroll sale) {
 		return mapper.map(sale, EnrollDTO.class);
 	}

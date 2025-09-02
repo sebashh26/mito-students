@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  bdstudent:
+    image: "sebashh26/bd-students:0.0.1"
+    container_name: postgres_server
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: mito-students
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    ports:
+    - 5432:5432
+    restart: on-failure
+    # platform: linux/amd64
+    # platform: linux/arm64
+
+
+  apistudent:
+    image: "sebashh26/api-students:0.0.1"
+    environment:
+      - JAVA_OPTS=""
+      - host=bdstudent
+      - port=5432
+      - database=mito-students
+      - username=postgres
+      - password=root
+    ports:
+      - "8787:8787"
+    restart: on-failure
+    depends_on:
+      - bdstudent
+    # entrypoint: java -jar /workspace/app.jar
+
+volumes:
+  pgdata:
